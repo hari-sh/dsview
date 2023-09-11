@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Markmap</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hari-sh/flowjs/inc/treeview.css">
+</head>
+
+<body>
+  <div class="container" id="inputcont">
+      <form>
+      <input id="diaginput" type="text" placeholder="Search...">
+      <button id="diagbtn" type="button">Search</button>
+      <div class="suggestions">
+        <ul></ul>
+      </div>
+      </form>
+  </div>
+
+  <svg id="mindmap"></svg>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-flextree@2.1.2/build/d3-flextree.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hari-sh/flowjs/inc/treeview.js"></script>
+  <script>
+const ishashmap = false;
+const datajson ={
+  "content": "AGGT, GXTXA",
+  "children": [
+    {
+      "content": "AGGT, GXTXA (2)",
+      "children": [
+        {
+          "content": "AGGT, GXTX (2)",
+          "children": [
+            {
+              "content": "AGGT, GXT (2)",
+              "children": [
+                {
+                  "content": "AGG, GX (1)",
+                  "children": [
+                    {
+                      "content": "AGG, G (1)",
+                      "children": [
+                        {
+                          "content": "AG,  (0)"
+                        }
+                      ]
+                    },
+                    {
+                      "content": "AG, GX (1)",
+                      "children": [
+                        {
+                          "content": "AG, G (1)",
+                          "children": [
+                            {
+                              "content": "A,  (0)"
+                            }
+                          ]
+                        },
+                        {
+                          "content": "A, GX (0)",
+                          "children": [
+                            {
+                              "content": "A, G (0)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                },
+                                {
+                                  "content": ", G (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GX (0)"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "content": "AGG, GXTX (1)",
+              "children": [
+                {
+                  "content": "AGG, GXT (1)",
+                  "children": [
+                    {
+                      "content": "AGG, GX (1)",
+                      "children": [
+                        {
+                          "content": "AGG, G (1)",
+                          "children": [
+                            {
+                              "content": "AG,  (0)"
+                            }
+                          ]
+                        },
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "content": "AG, GXT (1)",
+                      "children": [
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "content": "AG, GXTX (1)",
+                  "children": [
+                    {
+                      "content": "AG, GXT (1)",
+                      "children": [
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "content": "A, GXTX (0)",
+                      "children": [
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        },
+                        {
+                          "content": ", GXTX (0)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "content": "AGG, GXTXA (1)",
+          "children": [
+            {
+              "content": "AGG, GXTX (1)",
+              "children": [
+                {
+                  "content": "AGG, GXT (1)",
+                  "children": [
+                    {
+                      "content": "AGG, GX (1)",
+                      "children": [
+                        {
+                          "content": "AGG, G (1)",
+                          "children": [
+                            {
+                              "content": "AG,  (0)"
+                            }
+                          ]
+                        },
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "content": "AG, GXT (1)",
+                      "children": [
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "content": "AG, GXTX (1)",
+                  "children": [
+                    {
+                      "content": "AG, GXT (1)",
+                      "children": [
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "content": "A, GXTX (0)",
+                      "children": [
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        },
+                        {
+                          "content": ", GXTX (0)"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "content": "AG, GXTXA (1)",
+              "children": [
+                {
+                  "content": "AG, GXTX (1)",
+                  "children": [
+                    {
+                      "content": "AG, GXT (1)",
+                      "children": [
+                        {
+                          "content": "AG, GX (1)",
+                          "children": [
+                            {
+                              "content": "AG, G (1)",
+                              "children": [
+                                {
+                                  "content": "A,  (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "content": "A, GXTX (0)",
+                      "children": [
+                        {
+                          "content": "A, GXT (0)",
+                          "children": [
+                            {
+                              "content": "A, GX (0)",
+                              "children": [
+                                {
+                                  "content": "A, G (0)",
+                                  "children": [
+                                    {
+                                      "content": "A,  (0)"
+                                    },
+                                    {
+                                      "content": ", G (0)"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "content": ", GX (0)"
+                                }
+                              ]
+                            },
+                            {
+                              "content": ", GXT (0)"
+                            }
+                          ]
+                        },
+                        {
+                          "content": ", GXTX (0)"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "content": "A, GXTXA (1)",
+                  "children": [
+                    {
+                      "content": ", GXTX (0)"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</script>
+<script src="https://cdn.jsdelivr.net/gh/hari-sh/flowjs/inc/treeloader.js"></script>
+</body>
+</html>
